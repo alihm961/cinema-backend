@@ -7,6 +7,7 @@ require_once './controllers/AdminController.php';
 require_once './controllers/SnackController.php';
 require_once './controllers/SnackOrderController.php';
 require_once './controllers/BookingController.php';
+require_once './controllers/PaymentController.php'
 
 $movieController = new MovieController($mysqli);
 $userController = new UserController($mysqli);
@@ -14,6 +15,7 @@ $adminController = new AdminController($mysqli);
 $snackController = new SnackController($mysqli);
 $snackOrderController = new SnackOrderController($mysqli)
 $bookingController = new BookingController($mysqli);
+$paymentController = new PaymentController($mysqli);
 
 $route = $_GET['route'] ?? '';
 
@@ -60,3 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'bookings') {
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && $route === 'bookings') {
     $bookingController->getUserBookings();
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'bookings') {
+    $paymentController->createPayment();
