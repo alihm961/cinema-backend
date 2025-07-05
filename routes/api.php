@@ -10,6 +10,7 @@ require_once './controllers/BookingController.php';
 require_once './controllers/PaymentController.php';
 require_once './controllers/ShowtimeController.php';
 require_once './controllers/DiscountController.php';
+require_once './controllers/CinemaNightController.php'
 
 $movieController = new MovieController($mysqli);
 $userController = new UserController($mysqli);
@@ -20,6 +21,7 @@ $bookingController = new BookingController($mysqli);
 $paymentController = new PaymentController($mysqli);
 $showtimeController = new ShowtimeController($mysqli);
 $discountController = new DiscountController($mysqli);
+$cinemaNightController = new CinemaNightController($mysqli);
 
 $route = $_GET['route'] ?? '';
 
@@ -81,4 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'bookings') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'bookings') {
     $discountController->applyDiscount();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'bookings') {
+    $cinemaNightController->triggerCinemaNight();
 }
