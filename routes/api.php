@@ -5,11 +5,15 @@ require_once './controllers/MovieController.php';
 require_once './controllers/UserController.php';
 require_once './controllers/AdminController.php';
 require_once './controllers/SnackController.php';
+require_once './controllers/SnackOrderController.php';
+require_once './controllers/BookingController.php';
 
 $movieController = new MovieController($mysqli);
 $userController = new UserController($mysqli);
 $adminController = new AdminController($mysqli);
-$snackController = new SnackController("$mysqli");
+$snackController = new SnackController($mysqli);
+$snackOrderController = new SnackOrderController($mysqli)
+$bookingController = new BookingController($mysqli);
 
 $route = $_GET['route'] ?? '';
 
@@ -39,4 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $route === 'snacks') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'snacks') {
     $snackController->addSnack();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'snack-order') {
+    $snackOrderController->addSnackOrder();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $route === 'snack-orders') {
+    $snackOrderController->getUserOrders();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $route === 'bookings') {
+    $bookingController->createBooking();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $route === 'bookings') {
+    $bookingController->getUserBookings();
 }
