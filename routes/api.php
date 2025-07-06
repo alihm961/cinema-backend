@@ -9,6 +9,8 @@ return [
     "/payment" => ["controller" => "PaymentController","method" => "createPayment"],
     "/apply-discount" => ["controller" => "DiscountController","method" => "applyDiscount"],
     "/snack-order" => ["controller" => "SnackOrderController","method" => "createOrder"],
-    "/cinema-night" => ["controller" => "CinemaNightController","method" => "bookAuto"]
+    "/cinema-night" => ["controller" => "CinemaNightController","method" => "bookAuto"],
+    "/add-snack" => ["controller" => "SnackController", "method" => "addSnack"]
+
 ];
 
