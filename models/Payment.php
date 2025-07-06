@@ -2,7 +2,13 @@
 require_once ("Model.php");
 
 class Payment extends Model {
-    protected static string $table = "payments";
+    protected static  $table = "payments";
+    protected static $columns = [
+        "booking_id",
+        "user_id",
+        "amount",
+        "status"
+    ];
 
     public int $booking_id;
     public int $user_id;

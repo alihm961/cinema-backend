@@ -2,7 +2,8 @@
 require_once("Model.php");
 
 class SnackOrder extends Model {
-    protected static string $table = "snack_orders";
+    protected static  $table = "snack_orders";
+    protected static $columns = ["user_id", "snack_name", "quantity", "price"];
 
     public int $user_id;
     public string $snack_name;
