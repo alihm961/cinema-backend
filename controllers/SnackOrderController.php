@@ -23,6 +23,23 @@ class SnackOrderController extends BaseController {
         }
     }
 
+    public function createOrder() {
+        try {
+            $data = json_decode(file_get_contents("php://input"), true);
+            $order = new SnackOrder($data);
+            $success = $order->save($this->mysqli);
+            if ($success) {
+                $this->success(["saved" => true]);
+            } else {
+                $this->error("Failed to save snack order.");
+            }
+        } catch (Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
+
+
+
     public function getUserOrders() {
         try {
             $userId = $_GET['user_id'] ?? 0;
