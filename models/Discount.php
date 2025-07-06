@@ -2,7 +2,7 @@
 require_once("Model.php");
 
 class Discount extends Model {
-    protected static string $table = "bookings";
+    protected static  $table = "bookings";
 
     public static function apply($mysqli, $bookingId, $discountPercent): bool {
         $status = "discount_" . $discountPercent;
