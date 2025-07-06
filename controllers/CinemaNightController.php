@@ -5,16 +5,16 @@ require_once("./models/CinemaNight.php");
 
 class CinemaNightController extends BaseController {
     public function triggerCinemaNight() {
-        try {
-            $input = json_decode(file_get_contents("php://input"), true);
-            $adminId = $input["admin_id"] ?? "";
+    try {
+        $input = json_decode(file_get_contents("php://input"), true);
+        $adminId = $input["admin_id"] ?? "";
 
-            $service = new CinemaNightService($this->mysqli);
-            $service->trigger($adminId);
+        // Static method call directly from the class
+        CinemaNightService::trigger($adminId, $this->mysqli);
 
-            $this->success(["message" => "Cinema night booked"]);
-        } catch (Exception $e) {
-            $this->error($e->getMessage(), $e->getCode());
-        }
+        $this->success(["message" => "Cinema night booked"]);
+    } catch (Exception $e) {
+        $this->error($e->getMessage(), $e->getCode());
     }
+  }
 }

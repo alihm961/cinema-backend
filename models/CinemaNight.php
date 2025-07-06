@@ -14,7 +14,7 @@ class CinemaNight {
 
             $booking = new Booking([
                 "user_id" => $u->id,
-                "showtime_id" => 1, // hardcoded or configurable
+                "showtime_id" => 1,
                 "seat_number" => "AUTO-" . rand(1, 100),
                 "status" => "auto"
             ]);
