@@ -3,21 +3,27 @@
 require_once 'Model.php';
 
 class Movie extends Model {
-    protected static string $table = "movies";
+    protected static $table = "movies";
+    protected static $columns = [
+        "title",
+        "genre",
+        "poster_url",
+        "trailer_url"
+    ];
 
-    private int $id;
-    private string $title;
-    private string $genre;
-    private string $poster_url;
-    private string $trailer_url;
+    public int $id;
+    public string $title;
+    public string $genre;
+    public string $poster_url;
+    public string $trailer_url;
 
     public function __construct(array $data) {
-        $this->id = $data["id"];
-        $this->title = $data["title"];
-        $this->genre = $data["genre"];
-        $this->poster_url = $data["poster_url"];
-        $this->trailer_url = $data["trailer_url"];
-    }
+    $this->id = $data["id"] ?? 0;
+    $this->title = $data["title"] ?? "";
+    $this->genre = $data["genre"] ?? "";
+    $this->poster_url = $data["poster_url"] ?? "";
+    $this->trailer_url = $data["trailer_url"] ?? "";
+}
 
     public function toArray(): array {
         return [
