@@ -1,5 +1,6 @@
 <?php 
-require_once "./routes/api.php";
+require_once './connection/connection.php'; 
+$apis =  require_once "./routes/api.php";
 
 $base_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -17,7 +18,7 @@ if (isset($apis[$request])) {
     $method = $apis[$request]['method'];
     require_once "controllers/{$controller_name}.php";
 
-    $controller = new $controller_name();
+    $controller = new $controller_name($mysqli);
     if (method_exists($controller, $method)) {
         $controller->$method();
     } else {

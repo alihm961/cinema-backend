@@ -2,7 +2,7 @@
 require_once("Model.php");
 
 class User extends Model {
-    protected static string $table = "users";
+    protected static $table = "users";
 
     public string $name;
     public string $email;
