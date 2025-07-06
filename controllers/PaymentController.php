@@ -8,18 +8,20 @@ class PaymentController extends BaseController {
         try {
             $input = json_decode(file_get_contents("php://input"), true);
 
-            foreach ($input["payers"] as $userId) {
-                $payment = new Payment([
-                    "booking_id" => $input["booking_id"],
-                    "user_id" => $userId,
-                    "amount" => $input["total_amount"] / count($input["payers"]),
-                    "status" => "pending"
-                ]);
-
-                $payment->save($this->mysqli);
+            if (!empty($input["payers"]) && is_array($input["payers"])) {
+                foreach ($input["payers"] as $userId) {
+                    $payment = new Payment([
+                        "booking_id" => $input["booking_id"],
+                        "user_id" => $userId,
+                        "amount" => $input["total_amount"] / count($input["payers"]),
+                        "status" => "pending"
+                    ]);
+                    $payment->save($this->mysqli);
+                }
+                $this->success(["message" => "Payments created"]);
+            } else {
+                $this->error("No payers provided.");
             }
-
-            $this->success(["message" => "Payments created"]);
         } catch (Exception $e) {
             $this->error($e->getMessage());
         }
