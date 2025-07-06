@@ -8,6 +8,8 @@ class BookingController extends BaseController {
     public function createBooking() {
         try {
             $data = json_decode(file_get_contents("php://input"), true);
+            $data['showtime_id'] = $data['showtime_id'] ?? 0;
+            $data['seat_number'] = $data['seat_number'] ?? "";
 
             $booking = new Booking([
                 "user_id" => $data["user_id"],

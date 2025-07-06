@@ -1,8 +1,14 @@
 <?php
-
+require_once __DIR__ . '/Model.php';
 
 class Booking extends Model {
-    protected static string $table = "bookings";
+    protected static $table = "bookings";
+    protected static $columns = [
+        "user_id",
+        "showtime_id",
+        "seat_number",
+        "status"
+    ];
 
     public int $user_id;
     public int $showtime_id;
